@@ -1,0 +1,26 @@
+{
+  "name": "glimpse",
+  "version": "1.0.0",
+  "description": "Fast, unstyled link preview React component.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haydenbleasel/glimpse.git"
+  },
+  "keywords": [
+    "link",
+    "preview",
+    "interaction",
+    "react",
+    "component"
+  ],
+  "author": "Hayden Bleasel <hello@haydenbleasel.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/haydenbleasel/glimpse/issues"
+  },
+  "homepage": "https://github.com/haydenbleasel/glimpse#readme"
+}
