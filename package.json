@@ -1,5 +1,5 @@
 {
-  "name": "glimpse",
+  "name": "@haydenbleasel/glimpse",
   "version": "1.0.0",
   "description": "Fast, unstyled link preview React component.",
   "main": "./dist/index.js",
