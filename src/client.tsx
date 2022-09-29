@@ -1,7 +1,7 @@
-import { useMouse, useWindowScroll } from 'react-use';
+import { useHoverDirty, useMouse, useWindowScroll } from 'react-use';
 import { Root } from '@radix-ui/react-portal';
 import type { FC, ReactNode, RefObject } from 'react';
-import { useContext, useEffect, useState, createContext } from 'react';
+import { useContext, createContext } from 'react';
 
 const LoadingIcon: FC = () => (
   <svg
@@ -34,11 +34,11 @@ const Placeholder: FC<{ className?: string }> = ({ className = '' }) => (
   </span>
 );
 
-type LinkPreviewContextProps = {
-  image: string | null;
-  title: string | null;
-  description: string | null;
-  url: string | null;
+type LinkPreviewProps = {
+  image?: string | null;
+  title?: string | null;
+  description?: string | null;
+  url?: string | null;
 };
 
 const LinkPreviewContextDefaults = {
@@ -48,57 +48,30 @@ const LinkPreviewContextDefaults = {
   url: null,
 };
 
-const LinkPreviewContext = createContext<LinkPreviewContextProps>(
+const LinkPreviewContext = createContext<LinkPreviewProps>(
   LinkPreviewContextDefaults
 );
 
 const Dialog: FC<{
-  url: string;
+  data: LinkPreviewProps | undefined;
   linkRef: RefObject<Element>;
   className?: string;
   children?: ReactNode;
 }> = ({
-  url,
+  data,
   linkRef,
   className = 'pointer-events-none fixed z-20 flex w-[316px] translate-x-2 translate-y-2 flex-col rounded-lg bg-neutral-900/90 p-3 shadow-lg backdrop-blur-md transition-opacity group-hover:-translate-y-2 dark:bg-neutral-800 print:hidden',
   children,
 }) => {
   const { docX, docY } = useMouse(linkRef);
+  const isHovering = useHoverDirty(linkRef);
   const { x: scrollX, y: scrollY } = useWindowScroll();
-  const [data, setData] = useState<LinkPreviewContextProps>(
-    LinkPreviewContextDefaults
-  );
-
-  useEffect(() => {
-    const loadData = async () => {
-      const response = await fetch(url);
-      const text = await response.text();
-      const dom = new DOMParser();
-
-      const doc = dom.parseFromString(text, 'text/html');
-      const title = doc.querySelector('title')?.textContent ?? null;
-      const description =
-        doc
-          .querySelector('meta[name="description"]')
-          ?.attributes.getNamedItem('content')?.value ?? null;
-      const image =
-        doc
-          .querySelector('meta[property="og:image"]')
-          ?.attributes.getNamedItem('content')?.value ?? null;
-
-      setData({
-        url,
-        title,
-        description,
-        image,
-      });
-    };
-
-    loadData().catch(console.error);
-  }, [data, url]);
-
   const relativeX = docX - scrollX;
   const relativeY = docY - scrollY;
+
+  if (!isHovering || !data?.image) {
+    return null;
+  }
 
   return (
     <LinkPreviewContext.Provider value={data}>
@@ -120,9 +93,9 @@ const Dialog: FC<{
 
 const Image: FC<{
   className?: string;
-  height: number;
+  height?: number;
 }> = ({
-  className = 'm-0 h-[174px] rounded-sm object-cover',
+  className = 'w-full m-0 h-[174px] rounded-sm object-cover',
   height = 174,
 }) => {
   const { url, image } = useContext(LinkPreviewContext);
@@ -163,7 +136,7 @@ const Link: FC<{ className?: string }> = ({
   className = 'line-clamp-1 block text-sm leading-normal text-neutral-400',
 }) => {
   const { url } = useContext(LinkPreviewContext);
-  const { hostname } = new URL(url ?? '');
+  const { hostname } = url ? new URL(url) : { hostname: '' };
 
   return <span className={className}>{hostname}</span>;
 };
@@ -177,11 +150,3 @@ const LinkPreview = {
 };
 
 export default LinkPreview;
-
-/*
- *<LinkPreview.Dialog>
- *  <LinkPreview.Image className="" />
- *  <LinkPreview.Title className="" />
- *  <LinkPreview.Description className="" />
- *</LinkPreview.Dialog>
- */

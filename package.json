@@ -2,12 +2,26 @@
   "name": "@haydenbleasel/glimpse",
   "version": "1.0.0",
   "description": "Fast, unstyled link preview React component.",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "exports": {
+    "./client": {
+      "import": "./dist/client.mjs",
+      "require": "./dist/client.js"
+    },
+    "./server": {
+      "import": "./dist/server.mjs",
+      "require": "./dist/server.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "./client": [
+        "./dist/client.d.ts"
+      ],
+      "./server": [
+        "./dist/server.d.ts"
+      ]
+    }
+  },
   "scripts": {
     "prepublishOnly": "yarn build",
     "build": "tsup src",
@@ -65,6 +79,7 @@
   },
   "dependencies": {
     "@radix-ui/react-portal": "^1.0.0",
+    "node-html-parser": "^6.1.1",
     "react-use": "^17.4.0"
   },
   "peerDependencies": {
