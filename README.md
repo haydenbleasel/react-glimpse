@@ -14,7 +14,7 @@ yarn add glimpse
 
 ### Server
 
-Here's an example of the server code using Next.js' (Edge API Routes)[https://nextjs.org/docs/api-routes/edge-api-routes]:
+Here's an example of the server code using Next.js' [Edge API Routes](https://nextjs.org/docs/api-routes/edge-api-routes):
 
 ```ts
 import type { NextRequest } from 'next/server';
