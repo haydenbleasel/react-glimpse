@@ -1,3 +1,15 @@
+# v1.0.5 (Fri Sep 30 2022)
+
+#### ⚠️ Pushed to `main`
+
+- Split up react-use imports ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### Authors: 1
+
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v1.0.4 (Fri Sep 30 2022)
 
 #### ⚠️ Pushed to `main`
