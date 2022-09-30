@@ -14,10 +14,10 @@
   },
   "typesVersions": {
     "*": {
-      "./client": [
+      "client": [
         "./dist/client.d.ts"
       ],
-      "./server": [
+      "server": [
         "./dist/server.d.ts"
       ]
     }
