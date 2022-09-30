@@ -1,6 +1,4 @@
-import useMouse from 'react-use/lib/useMouse';
-import useWindowScroll from 'react-use/lib/useWindowScroll';
-import useHoverDirty from 'react-use/lib/useHoverDirty';
+import { useHoverDirty, useMouse, useWindowScroll } from 'react-use';
 import { Root } from '@radix-ui/react-portal';
 import type { FC, ReactNode, RefObject } from 'react';
 import { useContext, createContext } from 'react';

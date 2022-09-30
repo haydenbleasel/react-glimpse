@@ -6,14 +6,8 @@
     "dist"
   ],
   "exports": {
-    "./client": {
-      "import": "./dist/client.mjs",
-      "require": "./dist/client.js"
-    },
-    "./server": {
-      "import": "./dist/server.mjs",
-      "require": "./dist/server.js"
-    }
+    "./client": "./dist/client.js",
+    "./server": "./dist/server.js"
   },
   "typesVersions": {
     "*": {
