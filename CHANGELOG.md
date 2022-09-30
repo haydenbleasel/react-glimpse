@@ -1,3 +1,15 @@
+# v1.0.7 (Fri Sep 30 2022)
+
+#### ⚠️ Pushed to `main`
+
+- Add note on styling ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### Authors: 1
+
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v1.0.6 (Fri Sep 30 2022)
 
 #### ⚠️ Pushed to `main`
