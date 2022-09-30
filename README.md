@@ -98,20 +98,28 @@ const LinkPreview: FC<LinkProps> = ({ children, href, ...props }) => {
 
   return (
     <span ref={ref} className="group inline-block" tabIndex={-1} role="link">
-      <Glimpse.Dialog linkRef={ref} data={data.result}>
-        <Glimpse.Image />
-        <Glimpse.Title />
-        <Glimpse.Description />
+      <Glimpse.Dialog
+        linkRef={ref}
+        data={data.result}
+        className="pointer-events-none fixed z-20 flex w-[316px] translate-x-2 translate-y-2 flex-col rounded-lg bg-gray-900/90 p-3 shadow-lg backdrop-blur-md transition-opacity group-hover:-translate-y-2 dark:bg-gray-800 print:hidden"
+      >
+        <Glimpse.Image className="m-0 h-[174px] w-full rounded-sm object-cover" />
+        <Glimpse.Title
+          className={`text-md mt-2 block font-medium leading-normal text-white ${
+            data.result?.description ? 'line-clamp-1' : 'line-clamp-3'
+          }`}
+        />
+        <Glimpse.Description className="line-clamp-2 block text-sm leading-normal text-gray-300" />
         <span className="flex items-center gap-1">
-          <Glimpse.Link />
-          <ArrowUpRight width={12} height={12} className="text-neutral-400" />
+          <Glimpse.Link className="line-clamp-1 block text-sm leading-normal text-gray-400" />
+          <ArrowUpRight width={12} height={12} className="text-gray-400" />
         </span>
       </Glimpse.Dialog>
       <Link
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-md inline font-normal text-neutral-900 transition-colors hover:text-neutral-500 dark:text-white dark:hover:text-neutral-300"
+        className="text-md inline font-normal text-gray-900 transition-colors hover:text-gray-500 dark:text-white dark:hover:text-gray-300"
         {...props}
       >
         {children}
@@ -129,11 +137,4 @@ export default LinkPreview;
 
 ## Styling
 
-Glimpse is styled with Tailwind by default. You can override the default styles by providing `className`s on each component. To use the default styles, add the following to your `tailwind.config.js`:
-
-```ts
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ['./node_modules/@haydenbleasel/glimpse/dist/*.{js,ts,jsx,tsx}'],
-};
-```
+Glimpse is unstyled by default. You can style it using the `className` prop on the `Dialog` component. You can also style the `Image`, `Title`, `Description` and `Link` components.
