@@ -1,6 +1,6 @@
 {
   "name": "@haydenbleasel/glimpse",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Fast, unstyled link preview React component.",
   "files": [
     "dist"
