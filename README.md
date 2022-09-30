@@ -126,3 +126,14 @@ const LinkPreview: FC<LinkProps> = ({ children, href, ...props }) => {
 
 export default LinkPreview;
 ```
+
+## Styling
+
+Glimpse is styled with Tailwind by default. You can override the default styles by providing `className`s on each component. To use the default styles, add the following to your `tailwind.config.js`:
+
+```ts
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./node_modules/@haydenbleasel/glimpse/dist/*.{js,ts,jsx,tsx}'],
+};
+```
