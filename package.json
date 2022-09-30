@@ -22,6 +22,9 @@
       ]
     }
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "prepublishOnly": "yarn build",
     "build": "tsup src",
@@ -40,7 +43,7 @@
     "component"
   ],
   "author": "Hayden Bleasel <hello@haydenbleasel.com>",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/haydenbleasel/glimpse/issues"
   },
@@ -85,5 +88,14 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "auto": {
+    "plugins": [
+      "npm",
+      "all-contributors",
+      "conventional-commits",
+      "first-time-contributor",
+      "released"
+    ]
   }
 }
