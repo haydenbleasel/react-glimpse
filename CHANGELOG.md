@@ -1,3 +1,25 @@
+# v1.0.9 (Sat Oct 01 2022)
+
+#### ⚠️ Pushed to `main`
+
+- Fix typo ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### 🔩 Dependency Updates
+
+- Bump @typescript-eslint/eslint-plugin from 5.38.0 to 5.38.1 [#3](https://github.com/haydenbleasel/glimpse/pull/3) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump jest from 29.1.1 to 29.1.2 [#6](https://github.com/haydenbleasel/glimpse/pull/6) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 4.8.3 to 4.8.4 [#1](https://github.com/haydenbleasel/glimpse/pull/1) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump jest from 29.0.3 to 29.1.1 [#2](https://github.com/haydenbleasel/glimpse/pull/2) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump stylelint from 14.12.1 to 14.13.0 [#4](https://github.com/haydenbleasel/glimpse/pull/4) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/parser from 5.38.0 to 5.38.1 [#5](https://github.com/haydenbleasel/glimpse/pull/5) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v1.0.8 (Fri Sep 30 2022)
 
 #### ⚠️ Pushed to `main`
