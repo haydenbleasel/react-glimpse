@@ -7,7 +7,7 @@ Glimpse is a fast, unstyled link preview React component. It uses a combination 
 ## Installation
 
 ```bash
-yarn add glimpse
+yarn add @haydenbleasel/glimpse
 ```
 
 ## Usage
