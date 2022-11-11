@@ -1,3 +1,28 @@
+# v1.0.10 (Fri Nov 11 2022)
+
+#### ⚠️ Pushed to `main`
+
+- Bump deps ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### 🔩 Dependency Updates
+
+- Bump jest from 29.1.2 to 29.2.2 [#7](https://github.com/haydenbleasel/glimpse/pull/7) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @haydenbleasel/harmony from 1.0.30 to 1.0.31 [#8](https://github.com/haydenbleasel/glimpse/pull/8) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint-plugin-jest from 27.0.4 to 27.1.3 [#9](https://github.com/haydenbleasel/glimpse/pull/9) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/react-dom from 18.0.6 to 18.0.8 [#10](https://github.com/haydenbleasel/glimpse/pull/10) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @radix-ui/react-portal from 1.0.0 to 1.0.1 [#11](https://github.com/haydenbleasel/glimpse/pull/11) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint-plugin-react from 7.31.8 to 7.31.10 [#13](https://github.com/haydenbleasel/glimpse/pull/13) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 5.38.1 to 5.42.0 [#16](https://github.com/haydenbleasel/glimpse/pull/16) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump stylelint from 14.13.0 to 14.14.0 [#14](https://github.com/haydenbleasel/glimpse/pull/14) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump tsup from 6.2.3 to 6.3.0 [#15](https://github.com/haydenbleasel/glimpse/pull/15) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v1.0.9 (Sat Oct 01 2022)
 
 #### ⚠️ Pushed to `main`
