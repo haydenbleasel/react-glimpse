@@ -343,9 +343,9 @@
     strip-json-comments "^3.1.1"
 
 "@haydenbleasel/harmony@^1.1.8":
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/@haydenbleasel/harmony/-/harmony-1.1.8.tgz#e3cb51cd0461cdd7cd8a83203555521428b4b468"
-  integrity sha512-M2IGngTLMtuNRPhPo7vPH/Agv0kQPgdzE0Tm8bVLbeFepMEfMyp5Rg6UvU2OMFL3hMkwUqtwoYHHYFP24PTy5g==
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/@haydenbleasel/harmony/-/harmony-1.1.9.tgz#5f2d1cad9c1c7272ccecce8f9da814e51370d424"
+  integrity sha512-Md6gv2qgnj0q8J0R0v1fP3laM5yz47WmeQUTrhcuMNQsLtQna+dXQ/pSridINmX0Mg+1HP7/lEdsIpbuq+AF+w==
   dependencies:
     eslint-config-prettier "^8.5.0"
     stylelint-config-idiomatic-order "^9.0.0"
