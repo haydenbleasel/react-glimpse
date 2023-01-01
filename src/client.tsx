@@ -1,28 +1,42 @@
 import { useHoverDirty, useMouse, useWindowScroll } from 'react-use';
 import { Root } from '@radix-ui/react-portal';
 import type { FC, ReactNode, RefObject } from 'react';
-import { useContext, createContext } from 'react';
+import create from 'zustand';
+import { devtools, persist } from 'zustand/middleware';
 
-type LinkPreviewProps = {
+type GlimpseData = {
   image?: string | null;
   title?: string | null;
   description?: string | null;
   url?: string | null;
 };
 
-const LinkPreviewContextDefaults = {
-  image: null,
-  title: null,
-  description: null,
-  url: null,
+type GlimpseState = {
+  data: GlimpseData;
+  setData: (data: GlimpseData) => void;
 };
 
-const LinkPreviewContext = createContext<LinkPreviewProps>(
-  LinkPreviewContextDefaults
+const useGlimpse = create<GlimpseState>()(
+  devtools(
+    persist(
+      (set) => ({
+        data: {
+          image: null,
+          title: null,
+          description: null,
+          url: null,
+        },
+        setData: (data) => set({ data }),
+      }),
+      {
+        name: 'glimpse-storage',
+      }
+    )
+  )
 );
 
 const Dialog: FC<{
-  data: LinkPreviewProps | undefined;
+  data: GlimpseData | undefined;
   linkRef: RefObject<Element>;
   className?: string;
   children?: ReactNode;
@@ -32,26 +46,29 @@ const Dialog: FC<{
   const { x: scrollX, y: scrollY } = useWindowScroll();
   const relativeX = docX - scrollX;
   const relativeY = docY - scrollY;
+  const glimpse = useGlimpse();
+
+  if (data) {
+    glimpse.setData(data);
+  }
 
   if (!isHovering || !data?.image) {
     return null;
   }
 
   return (
-    <LinkPreviewContext.Provider value={data}>
-      <Root>
-        <span
-          className={className}
-          style={{
-            left: relativeX,
-            top: relativeY,
-            opacity: relativeX && relativeY ? 1 : 0,
-          }}
-        >
-          {children}
-        </span>
-      </Root>
-    </LinkPreviewContext.Provider>
+    <Root>
+      <span
+        className={className}
+        style={{
+          left: relativeX,
+          top: relativeY,
+          opacity: relativeX && relativeY ? 1 : 0,
+        }}
+      >
+        {children}
+      </span>
+    </Root>
   );
 };
 
@@ -59,17 +76,17 @@ const Image: FC<{
   className?: string;
   height?: number;
 }> = ({ className = '', height = 174 }) => {
-  const { url, image } = useContext(LinkPreviewContext);
+  const { data } = useGlimpse();
 
-  if (!image) {
+  if (!data.image) {
     return null;
   }
 
   return (
     <div style={{ height }}>
       <img
-        src={image}
-        alt={`Preview of ${url ?? 'a website'}`}
+        src={data.image}
+        alt={`Preview of ${data.url ?? 'a website'}`}
         className={className}
       />
     </div>
@@ -77,20 +94,20 @@ const Image: FC<{
 };
 
 const Title: FC<{ className?: string }> = ({ className }) => {
-  const { title } = useContext(LinkPreviewContext);
+  const { data } = useGlimpse();
 
-  return <p className={className}>{title}</p>;
+  return <p className={className}>{data.title}</p>;
 };
 
 const Description: FC<{ className?: string }> = ({ className = '' }) => {
-  const { description } = useContext(LinkPreviewContext);
+  const { data } = useGlimpse();
 
-  return <p className={className}>{description}</p>;
+  return <p className={className}>{data.description}</p>;
 };
 
 const Link: FC<{ className?: string }> = ({ className = '' }) => {
-  const { url } = useContext(LinkPreviewContext);
-  const { hostname } = url ? new URL(url) : { hostname: '' };
+  const { data } = useGlimpse();
+  const { hostname } = data.url ? new URL(data.url) : { hostname: '' };
 
   return <span className={className}>{hostname}</span>;
 };
