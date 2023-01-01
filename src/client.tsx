@@ -1,5 +1,6 @@
 import { useHoverDirty, useMouse, useWindowScroll } from 'react-use';
 import { Root } from '@radix-ui/react-portal';
+import { useEffect } from 'react';
 import type { FC, ReactNode, RefObject } from 'react';
 import create from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
@@ -35,24 +36,56 @@ const useGlimpse = create<GlimpseState>()(
   )
 );
 
+const fetchGlimpseData = async (endpoint: string, url: string) => {
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ url }),
+  });
+
+  const json = (await response.json()) as GlimpseData;
+
+  if (json.error) {
+    throw new Error(json.error);
+  }
+
+  return json.data;
+};
+
 const Dialog: FC<{
-  data: GlimpseData | undefined;
+  endpoint: string;
   linkRef: RefObject<Element>;
   className?: string;
   children?: ReactNode;
-}> = ({ data, linkRef, className = '', children }) => {
+}> = ({ endpoint, linkRef, className = '', children }) => {
   const { docX, docY } = useMouse(linkRef);
   const isHovering = useHoverDirty(linkRef);
   const { x: scrollX, y: scrollY } = useWindowScroll();
   const relativeX = docX - scrollX;
   const relativeY = docY - scrollY;
-  const glimpse = useGlimpse();
+  const { data, setData } = useGlimpse();
 
-  if (data) {
-    glimpse.setData(data);
-  }
+  useEffect(() => {
+    if (!isHovering) {
+      return;
+    }
 
-  if (!isHovering || !data?.image) {
+    const url = linkRef.current?.getAttribute('href');
+
+    if (!url) {
+      return;
+    }
+
+    fetchGlimpseData(endpoint, url)
+      .then(setData)
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [endpoint, isHovering, linkRef, setData]);
+
+  if (!isHovering || !data.image) {
     return null;
   }
 
