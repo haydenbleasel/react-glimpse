@@ -1,106 +1,93 @@
-import { useHoverDirty, useMouse, useWindowScroll } from 'react-use';
+/* eslint-disable id-length */
 import { Root } from '@radix-ui/react-portal';
-import type { FC, ReactNode, RefObject } from 'react';
-import { useContext, createContext } from 'react';
+import { useEffect } from 'react';
+import type { FC, ReactNode } from 'react';
+import { useEventListener } from '@react-hookz/web';
+import { useWindowScroll } from 'react-use';
+import createCache from './lib/createCache';
+import type { GlimpseData } from './types';
+import useGlimpseStore from './lib/useGlimpseStore';
 
-type LinkPreviewProps = {
-  image?: string | null;
-  title?: string | null;
-  description?: string | null;
-  url?: string | null;
-};
-
-const LinkPreviewContextDefaults = {
-  image: null,
-  title: null,
-  description: null,
-  url: null,
-};
-
-const LinkPreviewContext = createContext<LinkPreviewProps>(
-  LinkPreviewContextDefaults
-);
-
-const Dialog: FC<{
-  data: LinkPreviewProps | undefined;
-  linkRef: RefObject<Element>;
-  className?: string;
-  children?: ReactNode;
-}> = ({ data, linkRef, className = '', children }) => {
-  const { docX, docY } = useMouse(linkRef);
-  const isHovering = useHoverDirty(linkRef);
+export const useGlimpse = (
+  fetcher: (url: string) => Promise<GlimpseData>
+): GlimpseData => {
+  const { data, setData, setOffset, setUrl, url, setCache, cache, reset } =
+    useGlimpseStore();
   const { x: scrollX, y: scrollY } = useWindowScroll();
-  const relativeX = docX - scrollX;
-  const relativeY = docY - scrollY;
 
-  if (!isHovering || !data?.image) {
-    return null;
-  }
+  const hoverHandler: EventListener = (event) => {
+    const target = event.target as HTMLElement;
+    const parent = target.parentElement;
+    let link: HTMLAnchorElement | null = null;
+    const mouseEvent = event as MouseEvent;
 
-  return (
-    <LinkPreviewContext.Provider value={data}>
-      <Root>
-        <span
-          className={className}
-          style={{
-            left: relativeX,
-            top: relativeY,
-            opacity: relativeX && relativeY ? 1 : 0,
-          }}
-        >
-          {children}
-        </span>
-      </Root>
-    </LinkPreviewContext.Provider>
+    if (target.tagName === 'A') {
+      link = target as HTMLAnchorElement;
+    } else if (parent?.tagName === 'A') {
+      link = parent as HTMLAnchorElement;
+    } else {
+      reset();
+      return;
+    }
+
+    const newUrl = link.getAttribute('href');
+
+    if (!newUrl) {
+      reset();
+      return;
+    }
+
+    if (newUrl !== url) {
+      reset();
+    }
+
+    const relativeX = mouseEvent.pageX - scrollX;
+    const relativeY = mouseEvent.pageY - scrollY;
+
+    setOffset({ x: relativeX, y: relativeY });
+    setUrl(newUrl);
+    setData(cache[newUrl]);
+  };
+
+  useEventListener(
+    typeof window === 'undefined' ? null : window,
+    'mousemove',
+    hoverHandler,
+    { passive: true }
   );
+
+  useEffect(() => {
+    // create cache from all links on the page
+    if (Object.keys(cache).length) {
+      return;
+    }
+
+    // eslint-disable-next-line no-console
+    createCache(fetcher).then(setCache).catch(console.error);
+  }, [cache, fetcher, setCache]);
+
+  return data;
 };
 
-const Image: FC<{
+export const Glimpse: FC<{
+  children: ReactNode;
   className?: string;
-  height?: number;
-}> = ({ className = '', height = 174 }) => {
-  const { url, image } = useContext(LinkPreviewContext);
+}> = ({ children, className }) => {
+  const { offset, data } = useGlimpseStore();
 
-  if (!image) {
+  if ((!offset.x && !offset.y) || !data.image) {
     return null;
   }
 
   return (
-    <div style={{ height }}>
-      <img
-        src={image}
-        alt={`Preview of ${url ?? 'a website'}`}
-        className={className}
-      />
-    </div>
+    <Root
+      className={className}
+      style={{
+        left: offset.x,
+        top: offset.y,
+      }}
+    >
+      {children}
+    </Root>
   );
 };
-
-const Title: FC<{ className?: string }> = ({ className }) => {
-  const { title } = useContext(LinkPreviewContext);
-
-  return <p className={className}>{title}</p>;
-};
-
-const Description: FC<{ className?: string }> = ({ className = '' }) => {
-  const { description } = useContext(LinkPreviewContext);
-
-  return <p className={className}>{description}</p>;
-};
-
-const Link: FC<{ className?: string }> = ({ className = '' }) => {
-  const { url } = useContext(LinkPreviewContext);
-  const { hostname } = url ? new URL(url) : { hostname: '' };
-
-  return <span className={className}>{hostname}</span>;
-};
-
-const LinkPreview = {
-  Dialog,
-  Image,
-  Title,
-  Description,
-  Link,
-};
-
-export default LinkPreview;

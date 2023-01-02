@@ -12,9 +12,14 @@ const fetchLinkPreviewData = async (url: string): Promise<PreviewResponse> => {
   const data = await response.text();
   const dom = parse(data);
 
-  const title = dom.querySelector('title')?.text ?? null;
+  const title =
+    dom.querySelector('title')?.text ??
+    dom.querySelector('og:title')?.text ??
+    null;
   const description =
-    dom.querySelector('meta[name="description"]')?.attributes.content ?? null;
+    dom.querySelector('meta[name="description"]')?.attributes.content ??
+    dom.querySelector('meta[name="og:description"]')?.attributes.content ??
+    null;
   const image =
     dom.querySelector('meta[property="og:image"]')?.attributes.content ?? null;
 
