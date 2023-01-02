@@ -81,6 +81,7 @@
   },
   "dependencies": {
     "@radix-ui/react-portal": "^1.0.1",
+    "@react-hookz/web": "^20.0.3",
     "node-html-parser": "^6.1.1",
     "react-use": "^17.4.0",
     "zustand": "^4.2.0"

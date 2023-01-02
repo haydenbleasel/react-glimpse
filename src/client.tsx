@@ -1,9 +1,11 @@
-import { useHoverDirty, useMouse, useWindowScroll } from 'react-use';
+/* eslint-disable id-length */
 import { Root } from '@radix-ui/react-portal';
 import { useEffect } from 'react';
-import type { FC, ReactNode, RefObject } from 'react';
+import type { FC, ReactNode } from 'react';
 import create from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
+import { useEventListener } from '@react-hookz/web';
+import { useWindowScroll } from 'react-use';
 
 type GlimpseData = {
   image?: string | null;
@@ -15,9 +17,13 @@ type GlimpseData = {
 type GlimpseState = {
   data: GlimpseData;
   setData: (data: GlimpseData) => void;
+  offset: { x: number; y: number };
+  setOffset: (offset: { x: number; y: number }) => void;
+  url: string | null;
+  setUrl: (url: string | null) => void;
 };
 
-const useGlimpse = create<GlimpseState>()(
+const useGlimpseStore = create<GlimpseState>()(
   devtools(
     persist(
       (set) => ({
@@ -28,6 +34,10 @@ const useGlimpse = create<GlimpseState>()(
           url: null,
         },
         setData: (data) => set({ data }),
+        offset: { x: 0, y: 0 },
+        setOffset: (offset) => set({ offset }),
+        url: null,
+        setUrl: (url) => set({ url }),
       }),
       {
         name: 'glimpse-storage',
@@ -36,121 +46,77 @@ const useGlimpse = create<GlimpseState>()(
   )
 );
 
-const fetchGlimpseData = async (endpoint: string, url: string) => {
-  const response = await fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ url }),
-  });
-
-  const json = (await response.json()) as GlimpseData;
-
-  if (json.error) {
-    throw new Error(json.error);
-  }
-
-  return json.data;
-};
-
-const Dialog: FC<{
-  endpoint: string;
-  linkRef: RefObject<Element>;
-  className?: string;
-  children?: ReactNode;
-}> = ({ endpoint, linkRef, className = '', children }) => {
-  const { docX, docY } = useMouse(linkRef);
-  const isHovering = useHoverDirty(linkRef);
+export const useGlimpse = (
+  fetcher: (url: string) => Promise<GlimpseData>
+): GlimpseData => {
+  const { data, setData, setOffset, setUrl, url } = useGlimpseStore();
   const { x: scrollX, y: scrollY } = useWindowScroll();
-  const relativeX = docX - scrollX;
-  const relativeY = docY - scrollY;
-  const { data, setData } = useGlimpse();
 
-  useEffect(() => {
-    if (!isHovering) {
+  const hoverHandler: EventListener = (event) => {
+    const target = event.target as HTMLElement;
+    const parent = target.parentElement;
+    let link: HTMLAnchorElement | null = null;
+    const mouseEvent = event as MouseEvent;
+
+    if (target.tagName === 'A') {
+      link = target as HTMLAnchorElement;
+    } else if (parent?.tagName === 'A') {
+      link = parent as HTMLAnchorElement;
+    } else {
       return;
     }
 
-    const url = linkRef.current?.getAttribute('href');
+    const newUrl = link.getAttribute('href');
 
+    if (!newUrl || url === newUrl) {
+      return;
+    }
+
+    const rect = link.getBoundingClientRect();
+    const relativeX = mouseEvent.pageX - scrollX;
+    const relativeY = mouseEvent.pageY - scrollY;
+
+    setOffset({ x: relativeX, y: relativeY });
+    setUrl(newUrl);
+  };
+
+  useEventListener(
+    typeof window === 'undefined' ? null : window,
+    'mousemove',
+    hoverHandler,
+    { passive: true }
+  );
+
+  useEffect(() => {
     if (!url) {
       return;
     }
 
-    fetchGlimpseData(endpoint, url)
-      .then(setData)
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [endpoint, isHovering, linkRef, setData]);
+    // eslint-disable-next-line no-console
+    fetcher(url).then(setData).catch(console.error);
+  }, [url, fetcher, setData]);
 
-  if (!isHovering || !data.image) {
-    return null;
-  }
+  return data;
+};
+
+export const Glimpse: FC<{
+  children: ReactNode;
+  className?: string;
+}> = ({ children, className }) => {
+  const { offset } = useGlimpseStore();
+
+  console.log({ offset });
 
   return (
-    <Root>
-      <span
-        className={className}
-        style={{
-          left: relativeX,
-          top: relativeY,
-          opacity: relativeX && relativeY ? 1 : 0,
-        }}
-      >
-        {children}
-      </span>
+    <Root
+      className={className}
+      style={{
+        left: offset.x,
+        top: offset.y,
+        opacity: offset.x && offset.y ? 1 : 0,
+      }}
+    >
+      {children}
     </Root>
   );
 };
-
-const Image: FC<{
-  className?: string;
-  height?: number;
-}> = ({ className = '', height = 174 }) => {
-  const { data } = useGlimpse();
-
-  if (!data.image) {
-    return null;
-  }
-
-  return (
-    <div style={{ height }}>
-      <img
-        src={data.image}
-        alt={`Preview of ${data.url ?? 'a website'}`}
-        className={className}
-      />
-    </div>
-  );
-};
-
-const Title: FC<{ className?: string }> = ({ className }) => {
-  const { data } = useGlimpse();
-
-  return <p className={className}>{data.title}</p>;
-};
-
-const Description: FC<{ className?: string }> = ({ className = '' }) => {
-  const { data } = useGlimpse();
-
-  return <p className={className}>{data.description}</p>;
-};
-
-const Link: FC<{ className?: string }> = ({ className = '' }) => {
-  const { data } = useGlimpse();
-  const { hostname } = data.url ? new URL(data.url) : { hostname: '' };
-
-  return <span className={className}>{hostname}</span>;
-};
-
-const LinkPreview = {
-  Dialog,
-  Image,
-  Title,
-  Description,
-  Link,
-};
-
-export default LinkPreview;
