@@ -73,6 +73,12 @@ export const useGlimpse = (
     if (newUrl !== url) {
       setOffset({ x: 0, y: 0 });
       setUrl(null);
+      setData({
+        image: null,
+        title: null,
+        description: null,
+        url: null,
+      });
     }
 
     if (!newUrl || url === newUrl) {
@@ -85,6 +91,7 @@ export const useGlimpse = (
 
     setOffset({ x: relativeX, y: relativeY });
     setUrl(newUrl);
+    setData(cache[newUrl]);
   };
 
   useEventListener(
