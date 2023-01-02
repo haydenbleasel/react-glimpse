@@ -1,6 +1,6 @@
 # Glimpse
 
-Glimpse is a fast, unstyled link preview React component. It uses a combination of server-side and client-side rendering to provide an interactive preview of a link.
+Glimpse is a fast, unstyled link preview React component. It uses a combination of server-side and client-side rendering to provide an interactive preview of a link. The server-side component fetches the link's metadata while the client-side component creates a local cache and renders the preview.
 
 ![Example of Glimpse](/example.png)
 
