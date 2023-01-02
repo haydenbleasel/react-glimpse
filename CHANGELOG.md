@@ -1,3 +1,15 @@
+# v2.0.2 (Mon Jan 02 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Bump deps ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### Authors: 1
+
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v1.0.11 (Mon Jan 02 2023)
 
 #### 🐛 Bug Fix
