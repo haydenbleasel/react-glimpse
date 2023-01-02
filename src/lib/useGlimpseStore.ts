@@ -15,6 +15,7 @@ const useGlimpseStore = create<GlimpseState>()(
       (set) => ({
         data: defaultData,
         setData: (data) => set({ data }),
+        // eslint-disable-next-line id-length
         offset: { x: 0, y: 0 },
         setOffset: (offset) => set({ offset }),
         url: null,
