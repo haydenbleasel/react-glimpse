@@ -21,6 +21,8 @@ type GlimpseState = {
   setOffset: (offset: { x: number; y: number }) => void;
   url: string | null;
   setUrl: (url: string | null) => void;
+  cache: Record<string, GlimpseData>;
+  updateCache: (url: string, data: GlimpseData) => void;
 };
 
 const useGlimpseStore = create<GlimpseState>()(
@@ -38,6 +40,15 @@ const useGlimpseStore = create<GlimpseState>()(
         setOffset: (offset) => set({ offset }),
         url: null,
         setUrl: (url) => set({ url }),
+        cache: {},
+        updateCache: (url, data) =>
+          set((state) => {
+            if (!(url in state.cache)) {
+              state.cache[url] = data;
+            }
+
+            return state;
+          }),
       }),
       {
         name: 'glimpse-storage',
@@ -49,7 +60,8 @@ const useGlimpseStore = create<GlimpseState>()(
 export const useGlimpse = (
   fetcher: (url: string) => Promise<GlimpseData>
 ): GlimpseData => {
-  const { data, setData, setOffset, setUrl, url } = useGlimpseStore();
+  const { data, setData, setOffset, setUrl, url, updateCache, cache } =
+    useGlimpseStore();
   const { x: scrollX, y: scrollY } = useWindowScroll();
 
   const hoverHandler: EventListener = (event) => {
@@ -63,16 +75,23 @@ export const useGlimpse = (
     } else if (parent?.tagName === 'A') {
       link = parent as HTMLAnchorElement;
     } else {
+      setOffset({ x: 0, y: 0 });
+      setUrl(null);
       return;
     }
 
     const newUrl = link.getAttribute('href');
 
+    if (newUrl !== url) {
+      setOffset({ x: 0, y: 0 });
+      setUrl(null);
+    }
+
     if (!newUrl || url === newUrl) {
       return;
     }
 
-    const rect = link.getBoundingClientRect();
+    // const rect = link.getBoundingClientRect();
     const relativeX = mouseEvent.pageX - scrollX;
     const relativeY = mouseEvent.pageY - scrollY;
 
@@ -92,9 +111,23 @@ export const useGlimpse = (
       return;
     }
 
+    console.log(cache, 'cache');
+
+    if (url in cache) {
+      setData(cache[url]);
+      return;
+    }
+
     // eslint-disable-next-line no-console
-    fetcher(url).then(setData).catch(console.error);
-  }, [url, fetcher, setData]);
+    fetcher(url)
+      .then((newData) => {
+        setData(newData);
+        updateCache(url, newData);
+
+        return newData;
+      })
+      .catch(console.error);
+  }, [url, fetcher, setData, cache, updateCache]);
 
   return data;
 };
@@ -103,9 +136,11 @@ export const Glimpse: FC<{
   children: ReactNode;
   className?: string;
 }> = ({ children, className }) => {
-  const { offset } = useGlimpseStore();
+  const { offset, data } = useGlimpseStore();
 
-  console.log({ offset });
+  if ((!offset.x && !offset.y) || !data.image) {
+    return null;
+  }
 
   return (
     <Root
@@ -113,7 +148,6 @@ export const Glimpse: FC<{
       style={{
         left: offset.x,
         top: offset.y,
-        opacity: offset.x && offset.y ? 1 : 0,
       }}
     >
       {children}
