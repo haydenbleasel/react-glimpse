@@ -8,10 +8,10 @@ import { useEventListener } from '@react-hookz/web';
 import { useWindowScroll } from 'react-use';
 
 type GlimpseData = {
-  image?: string | null;
-  title?: string | null;
-  description?: string | null;
-  url?: string | null;
+  image: string | null;
+  title: string | null;
+  description: string | null;
+  url: string | null;
 };
 
 type GlimpseState = {
@@ -22,7 +22,7 @@ type GlimpseState = {
   url: string | null;
   setUrl: (url: string | null) => void;
   cache: Record<string, GlimpseData>;
-  updateCache: (url: string, data: GlimpseData) => void;
+  updateCache: (data: GlimpseData) => void;
 };
 
 const useGlimpseStore = create<GlimpseState>()(
@@ -41,10 +41,14 @@ const useGlimpseStore = create<GlimpseState>()(
         url: null,
         setUrl: (url) => set({ url }),
         cache: {},
-        updateCache: (url, data) =>
+        updateCache: (data) =>
           set((state) => {
-            if (!(url in state.cache)) {
-              state.cache[url] = data;
+            if (!data.url) {
+              return state;
+            }
+
+            if (!(data.url in state.cache)) {
+              state.cache[data.url] = data;
             }
 
             return state;
@@ -63,6 +67,8 @@ export const useGlimpse = (
   const { data, setData, setOffset, setUrl, url, updateCache, cache } =
     useGlimpseStore();
   const { x: scrollX, y: scrollY } = useWindowScroll();
+
+  console.log({ cache });
 
   const hoverHandler: EventListener = (event) => {
     const target = event.target as HTMLElement;
@@ -119,15 +125,38 @@ export const useGlimpse = (
     }
 
     // eslint-disable-next-line no-console
-    fetcher(url)
-      .then((newData) => {
-        setData(newData);
-        updateCache(url, newData);
-
-        return newData;
-      })
-      .catch(console.error);
+    fetcher(url).then(updateCache).catch(console.error);
   }, [url, fetcher, setData, cache, updateCache]);
+
+  useEffect(() => {
+    // create cache from all links on the page
+
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('a'));
+
+    links.forEach((link) => {
+      const href = link.getAttribute('href');
+
+      if (!href) {
+        return;
+      }
+
+      if (href in cache) {
+        return;
+      }
+
+      fetcher(href)
+        .then((newData) => {
+          updateCache(href, newData);
+
+          return newData;
+        })
+        .catch(console.error);
+    });
+  }, [cache, fetcher, updateCache]);
 
   return data;
 };
