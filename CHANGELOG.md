@@ -1,3 +1,15 @@
+# v1.0.11 (Mon Jan 02 2023)
+
+#### 🐛 Bug Fix
+
+- Automatic link targeting [#39](https://github.com/beskar-co/glimpse/pull/39) ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### Authors: 1
+
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v1.0.10 (Fri Nov 11 2022)
 
 #### ⚠️ Pushed to `main`
