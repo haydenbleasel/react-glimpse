@@ -6,13 +6,8 @@ import create from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 import { useEventListener } from '@react-hookz/web';
 import { useWindowScroll } from 'react-use';
-
-type GlimpseData = {
-  image: string | null;
-  title: string | null;
-  description: string | null;
-  url: string | null;
-};
+import createCache from './lib/createCache';
+import type { GlimpseCache, GlimpseData } from './types';
 
 type GlimpseState = {
   data: GlimpseData;
@@ -21,8 +16,8 @@ type GlimpseState = {
   setOffset: (offset: { x: number; y: number }) => void;
   url: string | null;
   setUrl: (url: string | null) => void;
-  cache: Record<string, GlimpseData>;
-  updateCache: (data: GlimpseData) => void;
+  cache: GlimpseCache;
+  setCache: (cache: GlimpseCache) => void;
 };
 
 const useGlimpseStore = create<GlimpseState>()(
@@ -41,18 +36,7 @@ const useGlimpseStore = create<GlimpseState>()(
         url: null,
         setUrl: (url) => set({ url }),
         cache: {},
-        updateCache: (data) =>
-          set((state) => {
-            if (!data.url) {
-              return state;
-            }
-
-            if (!(data.url in state.cache)) {
-              state.cache[data.url] = data;
-            }
-
-            return state;
-          }),
+        setCache: (cache) => set({ cache }),
       }),
       {
         name: 'glimpse-storage',
@@ -64,7 +48,7 @@ const useGlimpseStore = create<GlimpseState>()(
 export const useGlimpse = (
   fetcher: (url: string) => Promise<GlimpseData>
 ): GlimpseData => {
-  const { data, setData, setOffset, setUrl, url, updateCache, cache } =
+  const { data, setData, setOffset, setUrl, url, setCache, cache } =
     useGlimpseStore();
   const { x: scrollX, y: scrollY } = useWindowScroll();
 
@@ -111,48 +95,13 @@ export const useGlimpse = (
   );
 
   useEffect(() => {
-    if (!url) {
-      return;
-    }
-
-    if (url in cache) {
-      setData(cache[url]);
-      return;
-    }
-
-    // eslint-disable-next-line no-console
-    fetcher(url).then(updateCache).catch(console.error);
-  }, [url, fetcher, setData, cache, updateCache]);
-
-  useEffect(() => {
     // create cache from all links on the page
-
-    if (typeof window === 'undefined') {
+    if (Object.keys(cache).length) {
       return;
     }
 
-    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('a'));
-
-    links.forEach((link) => {
-      const href = link.getAttribute('href');
-
-      if (!href) {
-        return;
-      }
-
-      if (href in cache) {
-        return;
-      }
-
-      fetcher(href)
-        .then((newData) => {
-          updateCache(href, newData);
-
-          return newData;
-        })
-        .catch(console.error);
-    });
-  }, [cache, fetcher, updateCache]);
+    createCache(fetcher).then(setCache).catch(console.error);
+  }, [cache, fetcher, setCache]);
 
   return data;
 };
