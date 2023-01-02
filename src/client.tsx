@@ -68,8 +68,6 @@ export const useGlimpse = (
     useGlimpseStore();
   const { x: scrollX, y: scrollY } = useWindowScroll();
 
-  console.log({ cache });
-
   const hoverHandler: EventListener = (event) => {
     const target = event.target as HTMLElement;
     const parent = target.parentElement;
@@ -116,8 +114,6 @@ export const useGlimpse = (
     if (!url) {
       return;
     }
-
-    console.log(cache, 'cache');
 
     if (url in cache) {
       setData(cache[url]);
