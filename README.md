@@ -21,13 +21,9 @@ import type { NextRequest } from 'next/server';
 import glimpse from '@haydenbleasel/glimpse/server';
 import parseError from '../../utils/parseError';
 
-const res = (status: ResponseInit['status'], data: object): Response =>
-  new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      'content-type': 'application/json',
-    },
-  });
+const headers = {
+  'content-type': 'application/json',
+};
 
 export const config = {
   runtime: 'experimental-edge',
@@ -37,17 +33,15 @@ const handler = async (req: NextRequest): Promise<Response> => {
   const { url } = (await req.json()) as { url?: string };
 
   if (!url) {
-    return res(400, { error: 'No URL provided' });
+    return new Response(JSON.stringify({}), { status: 400, headers });
   }
 
   try {
     const data = await glimpse(url);
 
-    return res(200, data);
-  } catch (error) {
-    const message = parseError(error);
-
-    return res(500, {});
+    return new Response(JSON.stringify(data), { status: 200, headers });
+  } catch () {
+    return new Response(JSON.stringify({}), { status: 500, headers });
   }
 };
 
