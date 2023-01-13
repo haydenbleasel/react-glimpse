@@ -1,3 +1,20 @@
+# v2.0.3 (Fri Jan 13 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Ignore non-external links ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### 🔩 Dependency Updates
+
+- Bump json5 from 1.0.1 to 1.0.2 [#40](https://github.com/beskar-co/glimpse/pull/40) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v2.0.2 (Mon Jan 02 2023)
 
 #### ⚠️ Pushed to `main`
