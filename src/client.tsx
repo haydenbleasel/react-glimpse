@@ -10,7 +10,7 @@ import useGlimpseStore from './lib/useGlimpseStore';
 
 export const useGlimpse = (
   fetcher: (url: string) => Promise<GlimpseData>
-): GlimpseData => {
+): GlimpseData | null => {
   const { data, setData, setOffset, setUrl, url, setCache, cache, reset } =
     useGlimpseStore();
   const { x: scrollX, y: scrollY } = useWindowScroll();
@@ -32,7 +32,7 @@ export const useGlimpse = (
 
     const newUrl = link.getAttribute('href');
 
-    if (!newUrl) {
+    if (!newUrl?.startsWith('http')) {
       reset();
       return;
     }
@@ -75,7 +75,7 @@ export const Glimpse: FC<{
 }> = ({ children, className }) => {
   const { offset, data } = useGlimpseStore();
 
-  if ((!offset.x && !offset.y) || !data.image) {
+  if ((!offset.x && !offset.y) || !data?.image) {
     return null;
   }
 

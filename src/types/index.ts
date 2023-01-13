@@ -10,7 +10,7 @@ export type GlimpseCache = Record<string, GlimpseData>;
 export type GlimpseFetcher = (url: string) => Promise<GlimpseData>;
 
 export type GlimpseState = {
-  data: GlimpseData;
+  data: GlimpseData | null;
   setData: (data: GlimpseData) => void;
   offset: { x: number; y: number };
   setOffset: (offset: { x: number; y: number }) => void;
