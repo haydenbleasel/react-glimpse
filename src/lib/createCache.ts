@@ -11,7 +11,7 @@ const createCache = async (fetcher: GlimpseFetcher): Promise<GlimpseCache> => {
   const promises = links.map(async (link) => {
     const href = link.getAttribute('href');
 
-    if (!href || href in cache) {
+    if (!href || href in cache || !href.startsWith('http')) {
       return null;
     }
 
