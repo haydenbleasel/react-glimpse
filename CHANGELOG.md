@@ -1,3 +1,16 @@
+# v2.0.5 (Sat Jan 14 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Move to Beskar Labs ([@haydenbleasel](https://github.com/haydenbleasel))
+- Migrate to new Harmony ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### Authors: 1
+
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v2.0.4 (Fri Jan 13 2023)
 
 #### ⚠️ Pushed to `main`
