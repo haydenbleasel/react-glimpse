@@ -31,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/beskar-labs/glimpse.git"
+    "url": "git+https://github.com/beskar-co/glimpse.git"
   },
   "keywords": [
     "link",
@@ -43,9 +43,9 @@
   "author": "Hayden Bleasel <hello@haydenbleasel.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/beskar-labs/glimpse/issues"
+    "url": "https://github.com/beskar-co/glimpse/issues"
   },
-  "homepage": "https://github.com/beskar-labs/glimpse#readme",
+  "homepage": "https://github.com/beskar-co/glimpse#readme",
   "devDependencies": {
     "@beskar-labs/harmony": "^2.0.7",
     "@types/react": "^18.0.26",
