@@ -1,5 +1,5 @@
 {
-  "name": "@haydenbleasel/glimpse",
+  "name": "@beskar-labs/glimpse",
   "version": "2.0.4",
   "description": "Fast, unstyled link preview React component.",
   "files": [
@@ -20,6 +20,7 @@
     }
   },
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
@@ -30,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/haydenbleasel/glimpse.git"
+    "url": "git+https://github.com/beskar-labs/glimpse.git"
   },
   "keywords": [
     "link",
@@ -42,9 +43,9 @@
   "author": "Hayden Bleasel <hello@haydenbleasel.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/haydenbleasel/glimpse/issues"
+    "url": "https://github.com/beskar-labs/glimpse/issues"
   },
-  "homepage": "https://github.com/haydenbleasel/glimpse#readme",
+  "homepage": "https://github.com/beskar-labs/glimpse#readme",
   "devDependencies": {
     "@beskar-labs/harmony": "^2.0.7",
     "@types/react": "^18.0.26",
