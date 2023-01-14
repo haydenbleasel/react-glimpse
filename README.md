@@ -7,7 +7,7 @@ Glimpse is a fast, unstyled link preview React component. It uses a combination 
 ## Installation
 
 ```bash
-yarn add @haydenbleasel/glimpse
+yarn add @beskar-labs/glimpse
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ Here's an example of the server code using Next.js' [Edge API Routes](https://ne
 
 ```ts
 import type { NextRequest } from 'next/server';
-import glimpse from '@haydenbleasel/glimpse/server';
+import glimpse from '@beskar-labs/glimpse/server';
 import parseError from '../../utils/parseError';
 
 const headers = {
@@ -56,7 +56,7 @@ Here's an example of the client code using Next.js' Link component:
 'use client';
 
 import type { FC } from 'react';
-import { Glimpse, useGlimpse } from '@haydenbleasel/glimpse/client';
+import { Glimpse, useGlimpse } from '@beskar-labs/glimpse/client';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 
