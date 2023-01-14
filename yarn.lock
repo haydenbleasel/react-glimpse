@@ -311,10 +311,10 @@
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@beskar-labs/harmony@^2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@beskar-labs/harmony/-/harmony-2.0.7.tgz#0394eba857ac2f90bfdc5bf2f64266708f18b425"
-  integrity sha512-1HPysW4c9pH5TA/vfNidvjMG/Q5y2+QtcflBh6lMe31ax1Pg84pogaF5nOf8Y4sOcJvId0IzP5Y0Thsc4Hsg9g==
+"@beskar-labs/harmony@^2.0.8":
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@beskar-labs/harmony/-/harmony-2.0.8.tgz#673f6dd5981d8ef2d407f935c9dfd183d4c3cc45"
+  integrity sha512-CyGqD/qpLcniiVFvJYYaNVGx+c2ye7teFvf3MgxHIdjjX/EH5gugjNo3XvgutXbKdvupSrvXstxBX80im0otkw==
   dependencies:
     "@next/eslint-plugin-next" "^13.1.2"
     "@typescript-eslint/eslint-plugin" "^5.48.1"
@@ -695,10 +695,10 @@
   resolved "https://registry.yarnpkg.com/@react-hookz/deep-equal/-/deep-equal-1.0.4.tgz#68a71f36cbc88724b3ce6f4036183778b6e7f282"
   integrity sha512-N56fTrAPUDz/R423pag+n6TXWbvlBZDtTehaGFjK0InmN+V2OFWLE/WmORhmn6Ce7dlwH5+tQN1LJFw3ngTJVg==
 
-"@react-hookz/web@^20.1.0":
-  version "20.1.0"
-  resolved "https://registry.yarnpkg.com/@react-hookz/web/-/web-20.1.0.tgz#9734d640f6f3bc3c98e8fba674a60187ff913bfb"
-  integrity sha512-60H9KAQ8QF4lEEY2VujTaDTEb5tzHFVQ+pq4kV5zPHMzDVoaBQbiWcZrCKpFaVHzBP/nPvDEfXICZzga0aIIzg==
+"@react-hookz/web@^22.0.0":
+  version "22.0.0"
+  resolved "https://registry.yarnpkg.com/@react-hookz/web/-/web-22.0.0.tgz#e3f44f63adeaa9043ec18c5d19a9e6da14730b2f"
+  integrity sha512-jl4JgUXaiSvvDVQD2z/rq2/RaykjjLrAZxHOEQj2H38j4UFWIVhv5oKUH8yrKF4wX6tMX9gdrj62f9yGq/nSaQ==
   dependencies:
     "@react-hookz/deep-equal" "^1.0.4"
 
@@ -4992,9 +4992,9 @@ yocto-queue@^0.1.0:
   resolved "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zustand@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.2.0.tgz#f6ef9e63794eda9b296979578538a6df6be3e1b0"
-  integrity sha512-eNwaDoD2FYVnMgtNxiMUhTJO780wonZUzJrPQTLYI0erSIMZF8cniWFW22kGQUECd8rdHRJ/ZJL2XO54c9Ttuw==
+zustand@^4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.3.2.tgz#bb121fcad84c5a569e94bd1a2695e1a93ba85d39"
+  integrity sha512-rd4haDmlwMTVWVqwvgy00ny8rtti/klRoZjFbL/MAcDnmD5qSw/RZc+Vddstdv90M5Lv6RPgWvm1Hivyn0QgJw==
   dependencies:
     use-sync-external-store "1.2.0"

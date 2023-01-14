@@ -47,7 +47,7 @@
   },
   "homepage": "https://github.com/beskar-co/glimpse#readme",
   "devDependencies": {
-    "@beskar-labs/harmony": "^2.0.7",
+    "@beskar-labs/harmony": "^2.0.8",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
     "eslint": "^8.31.0",
@@ -65,10 +65,10 @@
   },
   "dependencies": {
     "@radix-ui/react-portal": "^1.0.1",
-    "@react-hookz/web": "^20.1.0",
+    "@react-hookz/web": "^22.0.0",
     "node-html-parser": "^6.1.4",
     "react-use": "^17.4.0",
-    "zustand": "^4.2.0"
+    "zustand": "^4.3.2"
   },
   "peerDependencies": {
     "react": "^18.2.0",
