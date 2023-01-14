@@ -1,3 +1,15 @@
+# v2.0.8 (Sat Jan 14 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Bump deps, fix zustand export ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### Authors: 1
+
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v2.0.7 (Sat Jan 14 2023)
 
 #### ⚠️ Pushed to `main`
