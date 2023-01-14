@@ -1,3 +1,16 @@
+# v2.0.6 (Sat Jan 14 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'main' of https://github.com/beskar-co/glimpse ([@haydenbleasel](https://github.com/haydenbleasel))
+- Update README.md ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### Authors: 1
+
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v2.0.5 (Sat Jan 14 2023)
 
 #### ⚠️ Pushed to `main`
