@@ -76,7 +76,7 @@ const fetcher = async (url: string) => {
 const LinkPreview: FC = () => {
   const data = useGlimpse(fetcher);
 
-  if (!data.image) {
+  if (!data?.image) {
     return null;
   }
 
