@@ -19,7 +19,6 @@ Here's an example of the server code using Next.js' [Edge API Routes](https://ne
 ```ts
 import type { NextRequest } from 'next/server';
 import glimpse from '@beskar-labs/glimpse/server';
-import parseError from '../../utils/parseError';
 
 const headers = {
   'content-type': 'application/json',
