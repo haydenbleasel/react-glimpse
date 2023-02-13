@@ -32,7 +32,7 @@ export const useGlimpse = (
 
     const newUrl = link.getAttribute('href');
 
-    if (!newUrl?.startsWith('http')) {
+    if (!newUrl?.startsWith('http') || link.hasAttribute('data-no-glimpse')) {
       reset();
       return;
     }
