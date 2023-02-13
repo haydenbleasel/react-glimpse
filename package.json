@@ -1,6 +1,6 @@
 {
   "name": "@beskar-labs/glimpse",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "Fast, unstyled link preview React component.",
   "files": [
     "dist"
