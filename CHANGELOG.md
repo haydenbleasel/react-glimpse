@@ -1,3 +1,23 @@
+# v2.0.11 (Mon Feb 13 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Add ability to disable glimpse ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### 🔩 Dependency Updates
+
+- Bump typescript from 4.9.4 to 4.9.5 [#41](https://github.com/beskar-co/glimpse/pull/41) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump jest from 29.3.1 to 29.4.1 [#42](https://github.com/beskar-co/glimpse/pull/42) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/react from 18.0.26 to 18.0.27 [#43](https://github.com/beskar-co/glimpse/pull/43) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 8.31.0 to 8.33.0 [#44](https://github.com/beskar-co/glimpse/pull/44) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v2.0.10 (Sat Jan 28 2023)
 
 #### ⚠️ Pushed to `main`
