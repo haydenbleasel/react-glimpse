@@ -1,5 +1,5 @@
 {
-  "name": "@beskar-labs/glimpse",
+  "name": "react-glimpse",
   "version": "2.0.13",
   "description": "Fast, unstyled link preview React component.",
   "files": [
@@ -31,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/beskar-co/glimpse.git"
+    "url": "git+https://github.com/haydenbleasel/react-glimpse.git"
   },
   "keywords": [
     "link",
@@ -43,9 +43,9 @@
   "author": "Hayden Bleasel <hello@haydenbleasel.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/beskar-co/glimpse/issues"
+    "url": "https://github.com/haydenbleasel/react-glimpse/issues"
   },
-  "homepage": "https://github.com/beskar-co/glimpse#readme",
+  "homepage": "https://github.com/haydenbleasel/react-glimpse#readme",
   "devDependencies": {
     "@types/react": "^18.0.31",
     "@types/react-dom": "^18.0.11",
