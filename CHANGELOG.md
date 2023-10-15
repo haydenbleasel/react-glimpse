@@ -1,3 +1,25 @@
+# v2.0.14 (Sun Oct 15 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Update push.yml ([@haydenbleasel](https://github.com/haydenbleasel))
+- Rename package ([@haydenbleasel](https://github.com/haydenbleasel))
+- Update Harmony ([@haydenbleasel](https://github.com/haydenbleasel))
+- Migrate from Yarn to pnpm ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### 🔩 Dependency Updates
+
+- Bump word-wrap from 1.2.3 to 1.2.4 [#63](https://github.com/haydenbleasel/react-glimpse/pull/63) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump semver from 6.3.0 to 6.3.1 [#62](https://github.com/haydenbleasel/react-glimpse/pull/62) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump stylelint from 15.4.0 to 15.10.1 [#61](https://github.com/haydenbleasel/react-glimpse/pull/61) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v2.0.13 (Sat Apr 01 2023)
 
 #### ⚠️ Pushed to `main`
