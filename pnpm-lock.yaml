@@ -22,9 +22,6 @@ dependencies:
     version: 4.4.3(@types/react@18.2.28)(react@18.2.0)
 
 devDependencies:
-  '@beskar-labs/harmony':
-    specifier: ^2.1.1
-    version: 2.5.3(eslint@8.51.0)(jest@29.7.0)(prettier@2.8.8)(stylelint@15.10.3)(typescript@5.2.2)
   '@types/react':
     specifier: ^18.0.31
     version: 18.2.28
@@ -34,6 +31,9 @@ devDependencies:
   eslint:
     specifier: ^8.37.0
     version: 8.51.0
+  eslint-config-harmony:
+    specifier: ^3.0.3
+    version: 3.0.3(eslint@8.51.0)(jest@29.7.0)(prettier@2.8.8)(stylelint@15.10.3)(typescript@5.2.2)
   jest:
     specifier: ^29.5.0
     version: 29.7.0
@@ -404,63 +404,6 @@ packages:
 
   /@bcoe/v8-coverage@0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
-    dev: true
-
-  /@beskar-labs/harmony@2.5.3(eslint@8.51.0)(jest@29.7.0)(prettier@2.8.8)(stylelint@15.10.3)(typescript@5.2.2):
-    resolution: {integrity: sha512-RPtpUKYt960lQKCuYub5npalVCGd5akFc6F0iPEraxzs84U0BawROYypvwBxg6WBnDJxwT1ZdPQKzgHik/0wDg==}
-    deprecated: This package has been renamed to eslint-config-harmony
-    peerDependencies:
-      eslint: ^8.44.0
-      prettier: ^3.0.0
-      stylelint: ^15.10.1
-      typescript: ^5.1.6
-    dependencies:
-      '@next/eslint-plugin-next': 13.5.4
-      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.51.0)(typescript@5.2.2)
-      '@typescript-eslint/parser': 5.62.0(eslint@8.51.0)(typescript@5.2.2)
-      eslint: 8.51.0
-      eslint-config-prettier: 8.10.0(eslint@8.51.0)
-      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-plugin-import@2.28.1)(eslint@8.51.0)
-      eslint-plugin-cypress: 2.15.1(eslint@8.51.0)
-      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.51.0)
-      eslint-plugin-jest: 27.4.2(@typescript-eslint/eslint-plugin@5.62.0)(eslint@8.51.0)(jest@29.7.0)(typescript@5.2.2)
-      eslint-plugin-jsx-a11y: 6.7.1(eslint@8.51.0)
-      eslint-plugin-n: 16.2.0(eslint@8.51.0)
-      eslint-plugin-prettier: 5.0.1(eslint-config-prettier@8.10.0)(eslint@8.51.0)(prettier@2.8.8)
-      eslint-plugin-promise: 6.1.1(eslint@8.51.0)
-      eslint-plugin-react: 7.33.2(eslint@8.51.0)
-      eslint-plugin-react-hooks: 4.6.0(eslint@8.51.0)
-      eslint-plugin-storybook: 0.6.15(eslint@8.51.0)(typescript@5.2.2)
-      eslint-plugin-unused-imports: 3.0.0(@typescript-eslint/eslint-plugin@5.62.0)(eslint@8.51.0)
-      prettier: 2.8.8
-      prettier-plugin-tailwindcss: 0.3.0(prettier@2.8.8)
-      stylelint: 15.10.3(typescript@5.2.2)
-      stylelint-config-idiomatic-order: 9.0.0(stylelint@15.10.3)
-      stylelint-config-prettier: 9.0.5(stylelint@15.10.3)
-      stylelint-config-standard: 34.0.0(stylelint@15.10.3)
-      stylelint-prettier: 4.0.2(prettier@2.8.8)(stylelint@15.10.3)
-      typescript: 5.2.2
-    transitivePeerDependencies:
-      - '@ianvs/prettier-plugin-sort-imports'
-      - '@prettier/plugin-pug'
-      - '@shopify/prettier-plugin-liquid'
-      - '@shufo/prettier-plugin-blade'
-      - '@trivago/prettier-plugin-sort-imports'
-      - '@types/eslint'
-      - eslint-import-resolver-node
-      - eslint-import-resolver-webpack
-      - jest
-      - prettier-plugin-astro
-      - prettier-plugin-css-order
-      - prettier-plugin-import-sort
-      - prettier-plugin-jsdoc
-      - prettier-plugin-marko
-      - prettier-plugin-organize-attributes
-      - prettier-plugin-organize-imports
-      - prettier-plugin-style-order
-      - prettier-plugin-svelte
-      - prettier-plugin-twig-melody
-      - supports-color
     dev: true
 
   /@csstools/css-parser-algorithms@2.3.2(@csstools/css-tokenizer@2.2.1):
@@ -2029,7 +1972,7 @@ packages:
       supports-color:
         optional: true
     dependencies:
-      ms: 2.1.3
+      ms: 2.1.2
     dev: true
 
   /debug@4.3.4:
@@ -2362,6 +2305,62 @@ packages:
   /escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
+    dev: true
+
+  /eslint-config-harmony@3.0.3(eslint@8.51.0)(jest@29.7.0)(prettier@2.8.8)(stylelint@15.10.3)(typescript@5.2.2):
+    resolution: {integrity: sha512-WyCYHb/3IoSXCCBR+BalC7PYNrrmOoGBg9lO45S1hfKSJgo3c1huJ51PSom3embTa8SmD4FuK6sBiO55/bSdUw==}
+    peerDependencies:
+      eslint: ^8.44.0
+      prettier: ^3.0.0
+      stylelint: ^15.10.1
+      typescript: ^5.1.6
+    dependencies:
+      '@next/eslint-plugin-next': 13.5.4
+      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.51.0)(typescript@5.2.2)
+      '@typescript-eslint/parser': 5.62.0(eslint@8.51.0)(typescript@5.2.2)
+      eslint: 8.51.0
+      eslint-config-prettier: 8.10.0(eslint@8.51.0)
+      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-plugin-import@2.28.1)(eslint@8.51.0)
+      eslint-plugin-cypress: 2.15.1(eslint@8.51.0)
+      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.51.0)
+      eslint-plugin-jest: 27.4.2(@typescript-eslint/eslint-plugin@5.62.0)(eslint@8.51.0)(jest@29.7.0)(typescript@5.2.2)
+      eslint-plugin-jsx-a11y: 6.7.1(eslint@8.51.0)
+      eslint-plugin-n: 16.2.0(eslint@8.51.0)
+      eslint-plugin-prettier: 5.0.1(eslint-config-prettier@8.10.0)(eslint@8.51.0)(prettier@2.8.8)
+      eslint-plugin-promise: 6.1.1(eslint@8.51.0)
+      eslint-plugin-react: 7.33.2(eslint@8.51.0)
+      eslint-plugin-react-hooks: 4.6.0(eslint@8.51.0)
+      eslint-plugin-storybook: 0.6.15(eslint@8.51.0)(typescript@5.2.2)
+      eslint-plugin-unused-imports: 3.0.0(@typescript-eslint/eslint-plugin@5.62.0)(eslint@8.51.0)
+      prettier: 2.8.8
+      prettier-plugin-tailwindcss: 0.3.0(prettier@2.8.8)
+      stylelint: 15.10.3(typescript@5.2.2)
+      stylelint-config-idiomatic-order: 9.0.0(stylelint@15.10.3)
+      stylelint-config-prettier: 9.0.5(stylelint@15.10.3)
+      stylelint-config-standard: 34.0.0(stylelint@15.10.3)
+      stylelint-prettier: 4.0.2(prettier@2.8.8)(stylelint@15.10.3)
+      typescript: 5.2.2
+    transitivePeerDependencies:
+      - '@ianvs/prettier-plugin-sort-imports'
+      - '@prettier/plugin-pug'
+      - '@shopify/prettier-plugin-liquid'
+      - '@shufo/prettier-plugin-blade'
+      - '@trivago/prettier-plugin-sort-imports'
+      - '@types/eslint'
+      - eslint-import-resolver-node
+      - eslint-import-resolver-webpack
+      - jest
+      - prettier-plugin-astro
+      - prettier-plugin-css-order
+      - prettier-plugin-import-sort
+      - prettier-plugin-jsdoc
+      - prettier-plugin-marko
+      - prettier-plugin-organize-attributes
+      - prettier-plugin-organize-imports
+      - prettier-plugin-style-order
+      - prettier-plugin-svelte
+      - prettier-plugin-twig-melody
+      - supports-color
     dev: true
 
   /eslint-config-prettier@8.10.0(eslint@8.51.0):
@@ -4249,10 +4248,6 @@ packages:
 
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
-    dev: true
-
-  /ms@2.1.3:
-    resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
 
   /mz@2.7.0:
