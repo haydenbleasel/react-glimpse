@@ -1,3 +1,15 @@
+# v2.0.15 (Fri Jan 19 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Create FUNDING.yml ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### Authors: 1
+
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v2.0.14 (Sun Oct 15 2023)
 
 #### ⚠️ Pushed to `main`
